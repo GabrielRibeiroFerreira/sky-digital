@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A77400F9FB6947C2B4EF1B3 /* Pods_sky_digital.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C93F8EB8EA38591F941DAE /* Pods_sky_digital.framework */; };
+		9BE6B7FFA40C803070BB6903 /* Pods_sky_digitalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D1C19BFB4923F780BA220F /* Pods_sky_digitalTests.framework */; };
+		BEDC7F636F2C29AEA6547500 /* Pods_sky_digital_sky_digitalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDCFCA19D0E1E611B30A779B /* Pods_sky_digital_sky_digitalUITests.framework */; };
 		DD3978A425C83F040090BEFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978A325C83F040090BEFC /* AppDelegate.swift */; };
 		DD3978A625C83F040090BEFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978A525C83F040090BEFC /* SceneDelegate.swift */; };
 		DD3978A825C83F040090BEFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978A725C83F040090BEFC /* ViewController.swift */; };
@@ -15,6 +18,9 @@
 		DD3978B025C83F070090BEFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD3978AE25C83F070090BEFC /* LaunchScreen.storyboard */; };
 		DD3978BB25C83F070090BEFC /* sky_digitalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978BA25C83F070090BEFC /* sky_digitalTests.swift */; };
 		DD3978C625C83F070090BEFC /* sky_digitalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978C525C83F070090BEFC /* sky_digitalUITests.swift */; };
+		DD3978DD25C86F060090BEFC /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978DC25C86F060090BEFC /* ServiceProtocol.swift */; };
+		DD3978E525C870840090BEFC /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978E425C870840090BEFC /* Service.swift */; };
+		DD3978F425C88F040090BEFC /* ConnectErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3978F325C88F040090BEFC /* ConnectErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		065FE4B8E58921266EC0AA3E /* Pods-sky-digital-sky-digitalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sky-digital-sky-digitalUITests.release.xcconfig"; path = "Target Support Files/Pods-sky-digital-sky-digitalUITests/Pods-sky-digital-sky-digitalUITests.release.xcconfig"; sourceTree = "<group>"; };
+		11D1C19BFB4923F780BA220F /* Pods_sky_digitalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sky_digitalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B31664EA58F319D5689726D /* Pods-sky-digital.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sky-digital.debug.xcconfig"; path = "Target Support Files/Pods-sky-digital/Pods-sky-digital.debug.xcconfig"; sourceTree = "<group>"; };
+		85C93F8EB8EA38591F941DAE /* Pods_sky_digital.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sky_digital.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89E3807F13E2B3C7561A739B /* Pods-sky-digitalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sky-digitalTests.debug.xcconfig"; path = "Target Support Files/Pods-sky-digitalTests/Pods-sky-digitalTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BDCFCA19D0E1E611B30A779B /* Pods_sky_digital_sky_digitalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sky_digital_sky_digitalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4876737BA6E121282EBA6FB /* Pods-sky-digital-sky-digitalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sky-digital-sky-digitalUITests.debug.xcconfig"; path = "Target Support Files/Pods-sky-digital-sky-digitalUITests/Pods-sky-digital-sky-digitalUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD3978A025C83F040090BEFC /* sky-digital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sky-digital.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3978A325C83F040090BEFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD3978A525C83F040090BEFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +62,11 @@
 		DD3978C125C83F070090BEFC /* sky-digitalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sky-digitalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3978C525C83F070090BEFC /* sky_digitalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sky_digitalUITests.swift; sourceTree = "<group>"; };
 		DD3978C725C83F070090BEFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD3978DC25C86F060090BEFC /* ServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
+		DD3978E425C870840090BEFC /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		DD3978F325C88F040090BEFC /* ConnectErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectErrors.swift; sourceTree = "<group>"; };
+		F8EEC635474FD835EAF6F2CB /* Pods-sky-digitalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sky-digitalTests.release.xcconfig"; path = "Target Support Files/Pods-sky-digitalTests/Pods-sky-digitalTests.release.xcconfig"; sourceTree = "<group>"; };
+		FF6CDE2B6F04F971ECC026B1 /* Pods-sky-digital.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sky-digital.release.xcconfig"; path = "Target Support Files/Pods-sky-digital/Pods-sky-digital.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A77400F9FB6947C2B4EF1B3 /* Pods_sky_digital.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BE6B7FFA40C803070BB6903 /* Pods_sky_digitalTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +90,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEDC7F636F2C29AEA6547500 /* Pods_sky_digital_sky_digitalUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08E046C1CB0CE83859D27BB7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85C93F8EB8EA38591F941DAE /* Pods_sky_digital.framework */,
+				BDCFCA19D0E1E611B30A779B /* Pods_sky_digital_sky_digitalUITests.framework */,
+				11D1C19BFB4923F780BA220F /* Pods_sky_digitalTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DD39789725C83F030090BEFC = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +114,8 @@
 				DD3978B925C83F070090BEFC /* sky-digitalTests */,
 				DD3978C425C83F070090BEFC /* sky-digitalUITests */,
 				DD3978A125C83F040090BEFC /* Products */,
+				EA721AA25B17782DDB4411CE /* Pods */,
+				08E046C1CB0CE83859D27BB7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +132,7 @@
 		DD3978A225C83F040090BEFC /* sky-digital */ = {
 			isa = PBXGroup;
 			children = (
+				DD3978DB25C86E9E0090BEFC /* Service */,
 				DD3978A325C83F040090BEFC /* AppDelegate.swift */,
 				DD3978A525C83F040090BEFC /* SceneDelegate.swift */,
 				DD3978A725C83F040090BEFC /* ViewController.swift */,
@@ -128,6 +162,29 @@
 			path = "sky-digitalUITests";
 			sourceTree = "<group>";
 		};
+		DD3978DB25C86E9E0090BEFC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DD3978DC25C86F060090BEFC /* ServiceProtocol.swift */,
+				DD3978E425C870840090BEFC /* Service.swift */,
+				DD3978F325C88F040090BEFC /* ConnectErrors.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EA721AA25B17782DDB4411CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B31664EA58F319D5689726D /* Pods-sky-digital.debug.xcconfig */,
+				FF6CDE2B6F04F971ECC026B1 /* Pods-sky-digital.release.xcconfig */,
+				D4876737BA6E121282EBA6FB /* Pods-sky-digital-sky-digitalUITests.debug.xcconfig */,
+				065FE4B8E58921266EC0AA3E /* Pods-sky-digital-sky-digitalUITests.release.xcconfig */,
+				89E3807F13E2B3C7561A739B /* Pods-sky-digitalTests.debug.xcconfig */,
+				F8EEC635474FD835EAF6F2CB /* Pods-sky-digitalTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD3978CA25C83F070090BEFC /* Build configuration list for PBXNativeTarget "sky-digital" */;
 			buildPhases = (
+				0A211CD347F3D5400C6CE9DB /* [CP] Check Pods Manifest.lock */,
 				DD39789C25C83F040090BEFC /* Sources */,
 				DD39789D25C83F040090BEFC /* Frameworks */,
 				DD39789E25C83F040090BEFC /* Resources */,
+				EB09ED6BBA482CCE90307049 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD3978CD25C83F070090BEFC /* Build configuration list for PBXNativeTarget "sky-digitalTests" */;
 			buildPhases = (
+				0A03D4C06663ABAE98F04B7D /* [CP] Check Pods Manifest.lock */,
 				DD3978B225C83F070090BEFC /* Sources */,
 				DD3978B325C83F070090BEFC /* Frameworks */,
 				DD3978B425C83F070090BEFC /* Resources */,
@@ -170,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD3978D025C83F070090BEFC /* Build configuration list for PBXNativeTarget "sky-digitalUITests" */;
 			buildPhases = (
+				B04303F791CAEDCF9C2E2032 /* [CP] Check Pods Manifest.lock */,
 				DD3978BD25C83F070090BEFC /* Sources */,
 				DD3978BE25C83F070090BEFC /* Frameworks */,
 				DD3978BF25C83F070090BEFC /* Resources */,
+				60284941DA1BC96B8FA6FE90 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +315,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A03D4C06663ABAE98F04B7D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sky-digitalTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0A211CD347F3D5400C6CE9DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sky-digital-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60284941DA1BC96B8FA6FE90 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sky-digital-sky-digitalUITests/Pods-sky-digital-sky-digitalUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sky-digital-sky-digitalUITests/Pods-sky-digital-sky-digitalUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sky-digital-sky-digitalUITests/Pods-sky-digital-sky-digitalUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B04303F791CAEDCF9C2E2032 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sky-digital-sky-digitalUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB09ED6BBA482CCE90307049 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sky-digital/Pods-sky-digital-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sky-digital/Pods-sky-digital-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sky-digital/Pods-sky-digital-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DD39789C25C83F040090BEFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -260,7 +425,10 @@
 			files = (
 				DD3978A825C83F040090BEFC /* ViewController.swift in Sources */,
 				DD3978A425C83F040090BEFC /* AppDelegate.swift in Sources */,
+				DD3978E525C870840090BEFC /* Service.swift in Sources */,
+				DD3978F425C88F040090BEFC /* ConnectErrors.swift in Sources */,
 				DD3978A625C83F040090BEFC /* SceneDelegate.swift in Sources */,
+				DD3978DD25C86F060090BEFC /* ServiceProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +601,7 @@
 		};
 		DD3978CB25C83F070090BEFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B31664EA58F319D5689726D /* Pods-sky-digital.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -453,6 +622,7 @@
 		};
 		DD3978CC25C83F070090BEFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF6CDE2B6F04F971ECC026B1 /* Pods-sky-digital.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,6 +643,7 @@
 		};
 		DD3978CE25C83F070090BEFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89E3807F13E2B3C7561A739B /* Pods-sky-digitalTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -495,6 +666,7 @@
 		};
 		DD3978CF25C83F070090BEFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8EEC635474FD835EAF6F2CB /* Pods-sky-digitalTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -517,6 +689,7 @@
 		};
 		DD3978D125C83F070090BEFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4876737BA6E121282EBA6FB /* Pods-sky-digital-sky-digitalUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -537,6 +710,7 @@
 		};
 		DD3978D225C83F070090BEFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 065FE4B8E58921266EC0AA3E /* Pods-sky-digital-sky-digitalUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

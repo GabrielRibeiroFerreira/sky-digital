@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'sky-digital' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sky-digital
+  pod 'Alamofire', '~> 5.2'
+
+  target 'sky-digitalTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'sky-digitalUITests' do
+    # Pods for testing
+  end
+
+end
