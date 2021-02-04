@@ -10,36 +10,39 @@ import UIKit
 class ListController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var movieCollection: UICollectionView!
     @IBOutlet weak var subtitleLabel: UILabel!
-//    var presenter: ListPresenter!
+    var presenter: ListPresenter!
 
-    var list: [Any] = []
+    var list: [Movie] = []
     
-    let cellIdentifier : String = "ListCollectionCell"
+    let cellIdentifier : String = "ListCollectionViewCell"
     
-    var actualMovie: Any?
+    var actualMovie: Movie?
     var actualPoster: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.presenter = ListPresenter()
+        self.presenter = ListPresenter()
         
         self.movieCollection.delegate = self
         self.movieCollection.dataSource = self
         
-        self.movieCollection.register(ListCollectionCell.self, forCellWithReuseIdentifier: self.cellIdentifier)
+        let nib = UINib.init(nibName: self.cellIdentifier, bundle: nil)
+        self.movieCollection.register(nib, forCellWithReuseIdentifier: self.cellIdentifier)
         
-//        self.presenter.getData(callBack: self.getData(_:_:_:))
+        self.movieCollection.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.presenter.getData(callBack: self.getData(_:_:_:))
     }
     
-//    func getData(_ list: [Movie]?, _ status: Bool, _ message: String) {
-//         if status {
-//            self.list = list ?? []
-//            self.movieCollection.reloadData()
-//        } else {
-//            print(message, self.description)
-//        }
-//    }
+    func getData(_ list: [Movie]?, _ status: Bool, _ message: String) {
+         if status {
+            self.list = list ?? []
+            self.movieCollection.reloadData()
+        } else {
+            print(message, self.description)
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -48,31 +51,40 @@ class ListController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.movieCollection.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! ListCollectionCell
+        let cell = self.movieCollection.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! ListCollectionViewCell
 
         let movie = self.list[indexPath.row]
-//        cell.name = movie.title
+        cell.name = movie.title?.title
         cell.image = nil
-//        if let imageURL = movie.poster_path {
-//            self.presenter.getImage(from: apiLowImageURL + imageURL) {
-//                (data, status, message) in
-//                if status {
-//                    if let imageData = data {
-//                        cell.img.image = UIImage(data: imageData)
-//                    }
-//                } else {
-//                    print(message)
-//                }
-//            }
-//        }
+        if let imageURL = movie.title?.image?.url {
+            self.presenter.getImage(from: imageURL) {
+                (data, status, message) in
+                if status {
+                    if let imageData = data {
+                        cell.image = UIImage(data: imageData)
+                    }
+                } else {
+                    print(message)
+                }
+            }
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = self.movieCollection.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! ListCollectionCell
-        
-        self.actualPoster = cell.image
         self.actualMovie = self.list[indexPath.row]
+        if let imageURL = self.actualMovie?.title?.image?.url {
+            self.presenter.getImage(from: imageURL) {
+                (data, status, message) in
+                if status {
+                    if let imageData = data {
+                        self.actualPoster = UIImage(data: imageData)
+                    }
+                } else {
+                    print(message)
+                }
+            }
+        }
         
         performSegue(withIdentifier: "toDetailsSegue", sender: self)
     }
