@@ -10,10 +10,12 @@ import UIKit
 
 public class DetailsController: UIViewController {
 //    var presenter: MoviePresenter!
-    var movie: Any!
+    var movie: Movie!
     var poster: UIImage! {
         didSet {
-            self.posterView.image = self.poster
+            if let view = self.posterView {
+                view.image  = self.poster
+            }
         }
     }
     
@@ -38,11 +40,12 @@ public class DetailsController: UIViewController {
     }
     
     func setView() {
-//        self.title = self.movie.original_title
-//        self.dateLabel.text = "lançamento: " + (self.movie.release_date ?? "")
+        self.title = self.movie.title?.title
+        self.titleLabel.text = self.movie.title?.title
+        self.dateLabel.text = "lançamento: " + (self.movie.releaseDate ?? "")
 //        self.runtimeLabel.text = (self.movie.runtime?.description ?? "") + " min"
-//        self.overviewLabel.text = self.movie.overview
-//        self.posterImage.image = self.poster
+        self.descriptionLabel.text = self.movie.plotSummary?.text
+        self.posterView.image = self.poster
 //        self.statusLabel.text = "status: " + (self.movie?.status ?? "")
 //
 //        //getting the poster in high quality

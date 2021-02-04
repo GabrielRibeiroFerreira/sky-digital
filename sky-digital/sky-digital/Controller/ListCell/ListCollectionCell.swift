@@ -38,16 +38,25 @@ public class ListCollectionCell: UICollectionViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.deactivate(self.internalConstraints)
+//        self.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(self.imageView)
+        self.addSubview(self.nameLabel)
         
         self.internalConstraints = [
-            imageView.topAnchor.constraint(equalTo: self.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.imageView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.imageView.heightAnchor.constraint(equalToConstant: 150),
+            self.imageView.widthAnchor.constraint(equalTo: self.heightAnchor, constant: CGFloat(2.0/3.0)),
             
-            nameLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 4),
-            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4)
+            self.nameLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 4),
+            self.nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4)
         ]
         
         NSLayoutConstraint.activate(self.internalConstraints)
