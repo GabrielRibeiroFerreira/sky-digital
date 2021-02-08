@@ -39,7 +39,9 @@ class ListController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func getData(_ list: [Movie]?, _ status: Bool, _ message: String) {
          if status {
             self.list = list ?? []
-            self.movieCollection.reloadData()
+            DispatchQueue.main.async {
+                self.movieCollection.reloadData()
+            }
         } else {
             print(message, self.description)
         }
@@ -48,6 +50,7 @@ class ListController: UIViewController, UICollectionViewDelegate, UICollectionVi
     // MARK: - Table view data source
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(self.list.count)
         return self.list.count
     }
 
