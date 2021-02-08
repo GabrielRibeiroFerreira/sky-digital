@@ -1,6 +1,0 @@
-framework module Pods_sky_digitalTests {
-  umbrella header "Pods-sky-digitalTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

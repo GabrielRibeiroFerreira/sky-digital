@@ -58,7 +58,7 @@ public class ListPresenter {
         do {
             let parameters = ["x-rapidapi-key": apiKey,
                               "x-rapidapi-host": apiHost
-                            ] as [String : Any]
+                            ] as [String : String]
             try service.getData(from: apiURL + "title/get-most-popular-movies",
                                 parameters: parameters,
                                 callBack: { [weak self] (serviceData, status, message) in
@@ -93,21 +93,23 @@ public class ListPresenter {
     //MARK: -MOVIE
     
     func getMovies(list: [String], callBack: @escaping DataListCallBack) {
+        var passed: Int = 0
         var movies: [Movie] = [] {
             didSet {
-                if (movies.count == 14) {// % 20 == 0) {
+                if (movies.count == passed) {// % 20 == 0) {
                     callBack(movies, true, "")
                 }
             }
         }
         var i: Double = 0
         for title in list {
+            passed += 1
             var key = title.substring(from: 7)
             key = key.substring(to: key.count - 1)
             if let movie = self.getMovieFromCache(key: title) {
                 movies.append(movie)
             } else {
-                if i >= 0 { break }
+                if i > 0 { break }
                 DispatchQueue.main.asyncAfter(deadline: .now() + (i * 0.4)) {
                     self.getMovieFromService(key: key) { (movie) in
                         movies.append(movie)
@@ -130,7 +132,7 @@ public class ListPresenter {
         do {
             let parameters = ["x-rapidapi-key": apiKey,
                               "x-rapidapi-host": apiHost
-                            ] as [String : Any]
+                            ] as [String : String]
  
             try service.getData(from: apiURL + "title/get-overview-details?tconst=" + key,
                                 parameters: parameters,

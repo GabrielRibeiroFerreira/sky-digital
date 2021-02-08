@@ -30,7 +30,8 @@ class ListController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let nib = UINib.init(nibName: self.cellIdentifier, bundle: nil)
         self.movieCollection.register(nib, forCellWithReuseIdentifier: self.cellIdentifier)
         
-        self.movieCollection.translatesAutoresizingMaskIntoConstraints = false
+//        self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        self.movieCollection.translatesAutoresizingMaskIntoConstraints = false
         
         self.presenter.getData(callBack: self.getData(_:_:_:))
     }

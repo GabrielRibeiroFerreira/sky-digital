@@ -8,7 +8,13 @@
 import Foundation
 
 struct Cache {
-    static private let defaults = UserDefaults.standard
+    static var defaults = UserDefaults.standard {
+        didSet {
+            Cache.imageCache.removeAllObjects()
+            Cache.listCache.removeAllObjects()
+            Cache.movieCache.removeAllObjects()
+        }
+    }
     static private let imageCache = NSCache<NSString, NSData>()
     static private let listCache = NSCache<NSString, Wrapper>()
     static private let movieCache = NSCache<NSString, Movie>()
@@ -101,9 +107,4 @@ struct Cache {
         
         return image
     }
-    
-//    static func getKey(page: Int) -> String {
-//        let key = type.string() + String(offset) + "/" + String(limit)
-//        return key
-//    }
 }

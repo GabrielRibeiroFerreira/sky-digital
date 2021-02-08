@@ -25,10 +25,10 @@ class ListCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.imageView.translatesAutoresizingMaskIntoConstraints = false
-        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.containerView.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+//        self.imageView.translatesAutoresizingMaskIntoConstraints = false
+//        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
+//        self.containerView.translatesAutoresizingMaskIntoConstraints = false
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
     }
 
 }

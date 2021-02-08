@@ -11,5 +11,5 @@ import Foundation
 protocol ServiceProtocol {
     typealias CallBack = (_ data: Data?, _ status: Bool, _ message:String) -> Void
     
-    func getData(from url: String, parameters: [String: Any]?, callBack: @escaping CallBack) throws
+    func getData(from url: String, parameters: [String: String]?, callBack: @escaping CallBack) throws
 }

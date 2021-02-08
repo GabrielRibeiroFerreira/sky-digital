@@ -1,6 +1,0 @@
-framework module Pods_sky_digital {
-  umbrella header "Pods-sky-digital-umbrella.h"
-
-  export *
-  module * { export * }
-}
