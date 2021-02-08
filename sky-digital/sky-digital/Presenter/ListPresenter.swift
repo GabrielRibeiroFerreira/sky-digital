@@ -30,10 +30,10 @@ public class ListPresenter {
     //get list from cache or service
     func getData(callBack: @escaping DataListCallBack) {
         //generate a key to try to get from cache
-        let key = String(self.actualPage)
+//        let key = String(self.actualPage)
         
         //try to get the list from cache or try to get from service
-        let list: [String] = self.getListFromCache(key: key) ?? []
+        let list: [String] = []//self.getListFromCache(key: key) ?? []
         if list == [] {
             self.getListFromService(callBack: callBack) { (list) in
                 self.getMovies(list: list, callBack: callBack)
@@ -109,10 +109,11 @@ public class ListPresenter {
             if let movie = self.getMovieFromCache(key: title) {
                 movies.append(movie)
             } else {
-                if i > 0 { break }
                 DispatchQueue.main.asyncAfter(deadline: .now() + (i * 0.4)) {
                     self.getMovieFromService(key: key) { (movie) in
-                        movies.append(movie)
+                        if let m = movie {
+                            movies.append(m)
+                        }
                     }
                 }
                 i += 1
@@ -128,7 +129,7 @@ public class ListPresenter {
         return movie
     }
     
-    func getMovieFromService(key: String, movieReturn: @escaping ((Movie) -> Void)) {
+    func getMovieFromService(key: String, movieReturn: @escaping ((Movie?) -> Void)) {
         do {
             let parameters = ["x-rapidapi-key": apiKey,
                               "x-rapidapi-host": apiHost
@@ -151,13 +152,13 @@ public class ListPresenter {
                     }
                 } else {
                     print(message, self.debugDescription)
-//                    callBack(nil, false, message)
+                    movieReturn(nil)
                 }
             })
         }catch ConnectErrors.receivedFailure{
-//            callBack(nil, false, "Lack of internet connection")
+            movieReturn(nil)
         }catch{
-//            callBack(nil, false, error.localizedDescription)
+            movieReturn(nil)
         }
     }
     
