@@ -18,19 +18,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="282"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yd9-ek-HgB">
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="yd9-ek-HgB">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="282"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gmH-kJ-e2N">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="gmH-kJ-e2N">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gmH-kJ-e2N" secondAttribute="height" multiplier="2:3" id="Zz2-KZ-nFa"/>
                                     <constraint firstAttribute="height" constant="240" id="dmQ-Li-aHe"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geo-aB-J7E">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geo-aB-J7E">
                                 <rect key="frame" x="0.0" y="244" width="160" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -40,10 +40,11 @@
                             <constraint firstItem="Geo-aB-J7E" firstAttribute="leading" secondItem="yd9-ek-HgB" secondAttribute="leading" id="0Kv-o9-LmD"/>
                             <constraint firstAttribute="trailing" secondItem="Geo-aB-J7E" secondAttribute="trailing" id="4ld-r4-nML"/>
                             <constraint firstItem="Geo-aB-J7E" firstAttribute="top" secondItem="gmH-kJ-e2N" secondAttribute="bottom" constant="4" id="Tru-au-OCn"/>
-                            <constraint firstItem="gmH-kJ-e2N" firstAttribute="leading" secondItem="yd9-ek-HgB" secondAttribute="leading" id="WqE-Nj-MJa"/>
+                            <constraint firstItem="gmH-kJ-e2N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yd9-ek-HgB" secondAttribute="leading" id="WqE-Nj-MJa"/>
                             <constraint firstItem="gmH-kJ-e2N" firstAttribute="top" secondItem="yd9-ek-HgB" secondAttribute="top" id="Xlw-6X-3vQ"/>
                             <constraint firstAttribute="bottom" secondItem="Geo-aB-J7E" secondAttribute="bottom" constant="4" id="YwW-wr-XE9"/>
-                            <constraint firstAttribute="trailing" secondItem="gmH-kJ-e2N" secondAttribute="trailing" id="bN2-MT-QAK"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gmH-kJ-e2N" secondAttribute="trailing" id="bN2-MT-QAK"/>
+                            <constraint firstItem="gmH-kJ-e2N" firstAttribute="width" secondItem="yd9-ek-HgB" secondAttribute="width" id="c3F-Zk-87C"/>
                             <constraint firstItem="gmH-kJ-e2N" firstAttribute="centerX" secondItem="Geo-aB-J7E" secondAttribute="centerX" id="rdj-GY-m0B"/>
                         </constraints>
                     </view>

@@ -96,7 +96,7 @@ public class ListPresenter {
         var passed: Int = 0
         var movies: [Movie] = [] {
             didSet {
-                if (movies.count == passed) {// % 20 == 0) {
+                if (movies.count == 20) { //(movies.count == passed) {
                     callBack(movies, true, "")
                 }
             }
@@ -104,6 +104,7 @@ public class ListPresenter {
         var i: Double = 0
         for title in list {
             passed += 1
+            if passed > 20 { break } //limite por conta do limite da API
             var key = title.substring(from: 7)
             key = key.substring(to: key.count - 1)
             if let movie = self.getMovieFromCache(key: title) {
