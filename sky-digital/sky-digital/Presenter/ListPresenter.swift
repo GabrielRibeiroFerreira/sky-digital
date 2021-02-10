@@ -8,8 +8,10 @@
 import Foundation
 
 public class ListPresenter {
-    public typealias DataListCallBack = (_ dataList: [Movie]?, _ status: Bool, _ message: String) -> Void
+    public typealias DataListCallBack = (_ status: Bool, _ message: String) -> Void
     public typealias ImageCallBack = (_ imageData: Data?, _ status: Bool, _ message: String) -> Void
+    
+    private var movieList: [Movie]?
     
     var service : ServiceProtocol!
     
@@ -19,6 +21,31 @@ public class ListPresenter {
     
     init(service: ServiceProtocol = Service()) {
         self.service = service
+    }
+    
+    public func getListCount() -> Int {
+        return self.movieList?.count ?? 0
+    }
+    
+    public func getMovieTitle(at index: Int) -> String {
+        guard !(index >= (self.movieList?.count ?? -1) || index < 0) else { return "OUT OF INDEX" }
+        let title = self.movieList?[index].title?.title
+        
+        return title ?? "NOT FOUND"
+    }
+    
+    public func getPosterURL(at index: Int) -> String? {
+        guard !(index >= (self.movieList?.count ?? 0) || index < 0) else { return nil }
+        let url = self.movieList?[index].title?.image?.url
+        
+        return url ?? nil
+    }
+    
+    public func getMovie(at index: Int) -> Movie? {
+        guard !(index >= (self.movieList?.count ?? 0) || index < 0) else { return nil }
+        let movie = self.movieList?[index]
+        
+        return movie ?? nil
     }
     
     //MARK: -LIST
@@ -52,8 +79,7 @@ public class ListPresenter {
     //get data from service with a url and a type
     private func getListFromService(callBack: @escaping DataListCallBack, listReturn: @escaping (([String]) -> Void)){
         do {
-            let parameters = ["x-rapidapi-key": apiKey,
-                              "x-rapidapi-host": apiHost
+            let parameters = ["x-rapidapi-host": apiHost
                             ] as [String : String]
             try service.getData(from: apiURL + "title/get-most-popular-movies",
                                 parameters: parameters,
@@ -72,17 +98,17 @@ public class ListPresenter {
                          listReturn(list)
                     } catch {
                         print(error)
-                        callBack(nil, false, "")
+                        callBack(false, "")
                     }
                 } else {
                     print(message, self.debugDescription)
-                    callBack(nil, false, message)
+                    callBack(false, message)
                 }
             })
         }catch ConnectErrors.receivedFailure{
-            callBack(nil, false, "Lack of internet connection")
+            callBack(false, "Lack of internet connection")
         }catch{
-            callBack(nil, false, error.localizedDescription)
+            callBack(false, error.localizedDescription)
         }
     }
     
@@ -92,7 +118,8 @@ public class ListPresenter {
         var passed: Int = 0
         var movies: [Movie] = [] {
             didSet {
-                callBack(movies, true, "")
+                self.movieList = movies
+                callBack(true, "")
             }
         }
         var i: Double = 0
@@ -126,8 +153,7 @@ public class ListPresenter {
     
     private func getMovieFromService(key: String, movieReturn: @escaping ((Movie?) -> Void)) {
         do {
-            let parameters = ["x-rapidapi-key": apiKey,
-                              "x-rapidapi-host": apiHost
+            let parameters = ["x-rapidapi-host": apiHost
                             ] as [String : String]
  
             try service.getData(from: apiURL + "title/get-overview-details?tconst=" + key,

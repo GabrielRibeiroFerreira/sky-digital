@@ -9,8 +9,7 @@
 import UIKit
 
 public class DetailsController: UIViewController {
-//    private var presenter: DetailsPresenter!
-    var movie: Movie? = nil
+    private var presenter: DetailsPresenter = DetailsPresenter(movie: nil)
     var poster: UIImage? = nil {
         didSet {
             if let view = self.posterView {
@@ -26,15 +25,19 @@ public class DetailsController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    public func setPresenter(presenter: DetailsPresenter) {
+        self.presenter = presenter
         
         self.setView()
     }
     
     func setView() {
-        self.title = self.movie?.title?.title
-        self.titleLabel.text = self.movie?.title?.title
-        self.dateLabel.text = "lançamento: " + (self.movie?.releaseDate ?? "")
-        self.descriptionLabel.text = self.movie?.plotSummary?.text
+        self.title = self.presenter.getTitle()
+        self.titleLabel.text = self.presenter.getTitle()
+        self.dateLabel.text = "lançamento: " + self.presenter.getDate()
+        self.descriptionLabel.text = self.presenter.getDescription()
         self.posterView.image = self.poster
     }
 }

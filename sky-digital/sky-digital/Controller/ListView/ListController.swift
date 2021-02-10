@@ -11,12 +11,10 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var movieCollection: UICollectionView!
     @IBOutlet weak var subtitleLabel: UILabel!
     private var presenter: ListPresenter!
-
-    private var list: [Movie] = []
     
     private let cellIdentifier : String = "ListCollectionViewCell"
     
-    private var actualMovie: Movie?
+    private var actualIndex: Int?
     private var actualPoster: UIImage?
 
     public override func viewDidLoad() {
@@ -32,21 +30,20 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
         
         self.subtitleLabel.text = "Carregando uma seleção de filmes imperdíveis. Aguarde uns instantes..."
         
-        self.presenter.getData(callBack: self.getData(_:_:_:))
+        self.presenter.getData(callBack: self.getData(_:_:))
     }
     
-    private func getData(_ list: [Movie]?, _ status: Bool, _ message: String) {
+    private func getData(_ status: Bool, _ message: String) {
          if status {
-            self.list = list ?? []
             DispatchQueue.main.async {
-                if self.list.count == 1 {
+                if self.presenter.getListCount() == 1 {
                     self.subtitleLabel.text = "Uma seleção de filmes imperdíveis:"
                 }
                 self.movieCollection.reloadData()
             }
         } else {
             DispatchQueue.main.async {
-                if self.list.count == 0 {
+                if self.presenter.getListCount() == 0 {
                     self.subtitleLabel.text = "Ocorreu um erro, tente novamente mais tarde."
                 }
             }
@@ -56,16 +53,15 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
     // MARK: - Table view data source
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.list.count
+        return self.presenter.getListCount()
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.movieCollection.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! ListCollectionViewCell
 
-        let movie = self.list[indexPath.row]
-        cell.name = movie.title?.title
+        cell.name = self.presenter.getMovieTitle(at: indexPath.row)
         cell.image = nil
-        if let imageURL = movie.title?.image?.url {
+        if let imageURL = self.presenter.getPosterURL(at: indexPath.row) {
             self.presenter.getImage(from: imageURL) {
                 (data, status, message) in
                 if status {
@@ -81,8 +77,8 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.actualMovie = self.list[indexPath.row]
-        if let imageURL = self.actualMovie?.title?.image?.url {
+        self.actualIndex = indexPath.row
+        if let imageURL = self.presenter.getPosterURL(at: indexPath.row) {
             self.presenter.getImage(from: imageURL) {
                 (data, status, message) in
                 if status {
@@ -104,12 +100,12 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsSegue" {
             let detailsController = segue.destination as! DetailsController
-            detailsController.movie = self.actualMovie
+            detailsController.setPresenter(presenter: DetailsPresenter(movie: self.presenter.getMovie(at: self.actualIndex ?? -1)))
 //            detailsController.presenter =  MoviePresenter(url: apiURL + "movie/" + (self.actualMovie?.id?.description ?? ""))
             if let poster = self.actualPoster {
                 detailsController.poster = poster
             } else {
-                if let imageURL = self.actualMovie?.title?.image?.url {
+                if let imageURL = self.presenter.getPosterURL(at: self.actualIndex ?? -1) {
                     self.presenter.getImage(from: imageURL) {
                         (data, status, message) in
                         if status {
@@ -122,9 +118,6 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
                     }
                 }
             }
-            
-            self.actualMovie = nil
-            self.actualPoster = nil
         }
     }
 }

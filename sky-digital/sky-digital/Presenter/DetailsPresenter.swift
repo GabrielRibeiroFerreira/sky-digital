@@ -9,10 +9,21 @@ import Foundation
 
 
 public class DetailsPresenter {
-    typealias DataListCallBack = (_ dataList: [Movie]?, _ status: Bool, _ message: String) -> Void
-    typealias ImageCallBack = (_ imageData: Data?, _ status: Bool, _ message: String) -> Void
+    private var movie: Movie?
     
-    init(service: ServiceProtocol = Service()) {
-//        self.service = service
+    init(movie: Movie?) {
+        self.movie = movie
+    }
+    
+    public func getTitle() -> String {
+        return movie?.title?.title ?? "NOT FOUND"
+    }
+    
+    public func getDate() -> String {
+        return movie?.title?.title ?? ""
+    }
+    
+    public func getDescription() -> String {
+        return movie?.title?.title ?? ""
     }
 }

@@ -87,10 +87,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dateLabel" destination="3px-sv-dps" id="tvr-ey-E3k"/>
-                        <outlet property="descriptionLabel" destination="D5O-v9-9UO" id="X5l-UL-kRR"/>
-                        <outlet property="posterView" destination="piW-nL-o3o" id="2El-AG-BZw"/>
-                        <outlet property="titleLabel" destination="jfz-UT-HOh" id="FoA-FB-1mk"/>
+                        <outlet property="dateLabel" destination="3px-sv-dps" id="Paa-Nw-61i"/>
+                        <outlet property="descriptionLabel" destination="D5O-v9-9UO" id="8eq-DG-E55"/>
+                        <outlet property="posterView" destination="piW-nL-o3o" id="yPH-D5-X2Z"/>
+                        <outlet property="titleLabel" destination="jfz-UT-HOh" id="d9a-wy-Wee"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YLT-c7-1Ph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
