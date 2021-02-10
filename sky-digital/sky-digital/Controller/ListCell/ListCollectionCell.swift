@@ -38,7 +38,6 @@ public class ListCollectionCell: UICollectionViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.deactivate(self.internalConstraints)
-//        self.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
