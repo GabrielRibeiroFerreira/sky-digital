@@ -101,7 +101,6 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
         if segue.identifier == "toDetailsSegue" {
             let detailsController = segue.destination as! DetailsController
             detailsController.setPresenter(presenter: DetailsPresenter(movie: self.presenter.getMovie(at: self.actualIndex ?? -1)))
-//            detailsController.presenter =  MoviePresenter(url: apiURL + "movie/" + (self.actualMovie?.id?.description ?? ""))
             if let poster = self.actualPoster {
                 detailsController.poster = poster
             } else {
