@@ -7,10 +7,12 @@
 
 import UIKit
 
-class ListCollectionViewCell: UICollectionViewCell {
+public class ListCollectionViewCell: UICollectionViewCell {
     public var image: UIImage? = nil {
         didSet {
-            self.imageView.image = self.image
+            DispatchQueue.main.async {
+                self.imageView.image = self.image
+            }
         }
     }
     public var name: String? = nil {
@@ -21,14 +23,13 @@ class ListCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var containerView: UIView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-//        self.imageView.translatesAutoresizingMaskIntoConstraints = false
-//        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        self.containerView.translatesAutoresizingMaskIntoConstraints = false
-//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-    }
 
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        isHidden = false
+        isSelected = false
+        isHighlighted = false
+        self.image = nil
+        self.name = nil
+    }
 }

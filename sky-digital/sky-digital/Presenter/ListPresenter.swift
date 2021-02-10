@@ -8,8 +8,10 @@
 import Foundation
 
 public class ListPresenter {
-    typealias DataListCallBack = (_ dataList: [Movie]?, _ status: Bool, _ message: String) -> Void
-    typealias ImageCallBack = (_ imageData: Data?, _ status: Bool, _ message: String) -> Void
+    public typealias DataListCallBack = (_ status: Bool, _ message: String) -> Void
+    public typealias ImageCallBack = (_ imageData: Data?, _ status: Bool, _ message: String) -> Void
+    
+    private var movieList: [Movie]?
     
     var service : ServiceProtocol!
     
@@ -17,23 +19,44 @@ public class ListPresenter {
     var pages : Int = 0
     var total : Int = 0
     
-    init(service: ServiceProtocol) {
+    init(service: ServiceProtocol = Service()) {
         self.service = service
     }
     
-    init() {
-        self.service = Service()
+    public func getListCount() -> Int {
+        return self.movieList?.count ?? 0
+    }
+    
+    public func getMovieTitle(at index: Int) -> String {
+        guard !(index >= (self.movieList?.count ?? -1) || index < 0) else { return "OUT OF INDEX" }
+        let title = self.movieList?[index].title?.title
+        
+        return title ?? "NOT FOUND"
+    }
+    
+    public func getPosterURL(at index: Int) -> String? {
+        guard !(index >= (self.movieList?.count ?? 0) || index < 0) else { return nil }
+        let url = self.movieList?[index].title?.image?.url
+        
+        return url ?? nil
+    }
+    
+    public func getMovie(at index: Int) -> Movie? {
+        guard !(index >= (self.movieList?.count ?? 0) || index < 0) else { return nil }
+        let movie = self.movieList?[index]
+        
+        return movie ?? nil
     }
     
     //MARK: -LIST
     
     //get list from cache or service
-    func getData(callBack: @escaping DataListCallBack) {
+    public func getData(callBack: @escaping DataListCallBack) {
         //generate a key to try to get from cache
-//        let key = String(self.actualPage)
+        let key = String(self.actualPage)
         
         //try to get the list from cache or try to get from service
-        let list: [String] = []//self.getListFromCache(key: key) ?? []
+        let list: [String] = self.getListFromCache(key: key) ?? []
         if list == [] {
             self.getListFromService(callBack: callBack) { (list) in
                 self.getMovies(list: list, callBack: callBack)
@@ -44,7 +67,7 @@ public class ListPresenter {
     }
     
     //get data from cache with a key and a type
-    func getListFromCache(key: String) -> [String]? {
+    private func getListFromCache(key: String) -> [String]? {
         //get from cache
         guard let wrapper = Cache.getListCache(withKey: key) else { return nil }
         guard let list = wrapper.results else { return nil }
@@ -54,10 +77,9 @@ public class ListPresenter {
     }
     
     //get data from service with a url and a type
-    func getListFromService(callBack: @escaping DataListCallBack, listReturn: @escaping (([String]) -> Void)){
+    private func getListFromService(callBack: @escaping DataListCallBack, listReturn: @escaping (([String]) -> Void)){
         do {
-            let parameters = ["x-rapidapi-key": apiKey,
-                              "x-rapidapi-host": apiHost
+            let parameters = ["x-rapidapi-host": apiHost
                             ] as [String : String]
             try service.getData(from: apiURL + "title/get-most-popular-movies",
                                 parameters: parameters,
@@ -76,41 +98,40 @@ public class ListPresenter {
                          listReturn(list)
                     } catch {
                         print(error)
-                        callBack(nil, false, "")
+                        callBack(false, "")
                     }
                 } else {
                     print(message, self.debugDescription)
-                    callBack(nil, false, message)
+                    callBack(false, message)
                 }
             })
         }catch ConnectErrors.receivedFailure{
-            callBack(nil, false, "Lack of internet connection")
+            callBack(false, "Lack of internet connection")
         }catch{
-            callBack(nil, false, error.localizedDescription)
+            callBack(false, error.localizedDescription)
         }
     }
     
     //MARK: -MOVIE
     
-    func getMovies(list: [String], callBack: @escaping DataListCallBack) {
+    private func getMovies(list: [String], callBack: @escaping DataListCallBack) {
         var passed: Int = 0
         var movies: [Movie] = [] {
             didSet {
-                if (movies.count == 20) { //(movies.count == passed) {
-                    callBack(movies, true, "")
-                }
+                self.movieList = movies
+                callBack(true, "")
             }
         }
         var i: Double = 0
         for title in list {
             passed += 1
-            if passed > 20 { break } //limite por conta do limite da API
+            if passed > 10 { break } //limite por conta do limite da API
             var key = title.substring(from: 7)
             key = key.substring(to: key.count - 1)
             if let movie = self.getMovieFromCache(key: title) {
                 movies.append(movie)
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + (i * 0.4)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (i * 0.2)) {
                     self.getMovieFromService(key: key) { (movie) in
                         if let m = movie {
                             movies.append(m)
@@ -122,7 +143,7 @@ public class ListPresenter {
         }
     }
     
-    func getMovieFromCache(key: String) -> Movie? {
+    private func getMovieFromCache(key: String) -> Movie? {
         //get from cache
         guard let movie = Cache.getMovieCache(withKey: key) else { return nil }
         
@@ -130,10 +151,9 @@ public class ListPresenter {
         return movie
     }
     
-    func getMovieFromService(key: String, movieReturn: @escaping ((Movie?) -> Void)) {
+    private func getMovieFromService(key: String, movieReturn: @escaping ((Movie?) -> Void)) {
         do {
-            let parameters = ["x-rapidapi-key": apiKey,
-                              "x-rapidapi-host": apiHost
+            let parameters = ["x-rapidapi-host": apiHost
                             ] as [String : String]
  
             try service.getData(from: apiURL + "title/get-overview-details?tconst=" + key,
@@ -165,7 +185,7 @@ public class ListPresenter {
     
     //MARK: -IMAGE
     
-    func getImage(from url: String, callBack: @escaping ImageCallBack) {
+    public func getImage(from url: String, callBack: @escaping ImageCallBack) {
         //try to get the image from cache or try to get from service
         if let imageData = self.getImageFromCache(key: url) {
             callBack(imageData, true, "")
@@ -174,7 +194,7 @@ public class ListPresenter {
         }
     }
     
-    func getImageFromCache(key: String) -> Data? {
+    private func getImageFromCache(key: String) -> Data? {
         //data of image
         var data: Data? = nil
         
@@ -185,7 +205,7 @@ public class ListPresenter {
         return data
     }
     
-    func getImageFromService(from url: String, callBack: @escaping ImageCallBack) {
+    private func getImageFromService(from url: String, callBack: @escaping ImageCallBack) {
         do {
             try self.service.getData(from: url, parameters: nil) { (data, status, message) in
                 if status {
