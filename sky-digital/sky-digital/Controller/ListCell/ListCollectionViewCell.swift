@@ -29,7 +29,7 @@ public class ListCollectionViewCell: UICollectionViewCell {
         isHidden = false
         isSelected = false
         isHighlighted = false
-//        self.image = nil
-//        self.name = nil
+        self.image = nil
+        self.name = nil
     }
 }

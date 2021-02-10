@@ -45,7 +45,11 @@ public class ListController: UIViewController, UICollectionViewDelegate, UIColle
                 self.movieCollection.reloadData()
             }
         } else {
-            print(message, self.description)
+            DispatchQueue.main.async {
+                if self.list.count == 0 {
+                    self.subtitleLabel.text = "Ocorreu um erro, tente novamente mais tarde."
+                }
+            }
         }
     }
 
