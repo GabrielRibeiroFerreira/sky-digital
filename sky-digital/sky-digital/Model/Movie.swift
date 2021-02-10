@@ -8,12 +8,12 @@
 import Foundation
 
 public class Movie: Codable {
-    var id: String?
-    var plotSummary: PlotSummary?
-    var releaseDate: String?
-    var title: Title?
+    public var id: String?
+    public var plotSummary: PlotSummary?
+    public var releaseDate: String?
+    public var title: Title?
     
-    struct Title: Codable {
+    public struct Title: Codable {
         var id: String?
         var image: Image?
         var title: String?
@@ -21,14 +21,14 @@ public class Movie: Codable {
         var year: Int?
     }
     
-    struct Image: Codable {
+    public struct Image: Codable {
         var height: Int?
         var id: String?
         var url: String?
         var width: Int?
     }
     
-    struct PlotSummary: Codable {
+    public struct PlotSummary: Codable {
         var author: String?
         var id: String?
         var text: String?

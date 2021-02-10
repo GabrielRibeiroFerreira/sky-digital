@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Cache {
-    static var defaults = UserDefaults.standard {
+public struct Cache {
+    static public var defaults = UserDefaults.standard {
         didSet {
             Cache.imageCache.removeAllObjects()
             Cache.listCache.removeAllObjects()
@@ -19,7 +19,7 @@ struct Cache {
     static private let listCache = NSCache<NSString, Wrapper>()
     static private let movieCache = NSCache<NSString, Movie>()
     
-    static func setMovieCache(_ movie: Movie, withKey key: String) {
+    static public func setMovieCache(_ movie: Movie, withKey key: String) {
         Cache.movieCache.setObject(movie, forKey: NSString(string: key))
         
         do {
@@ -31,25 +31,17 @@ struct Cache {
         }
     }
     
-    static func setListCache(_ wrapper: Wrapper, withKey key: String) {
+    static public func setListCache(_ wrapper: Wrapper, withKey key: String) {
         Cache.listCache.setObject(wrapper, forKey: NSString(string: key))
-        
-        do {
-            let encoded = try JSONEncoder().encode(wrapper)
-            Cache.defaults.set(encoded, forKey: key)
-        }
-        catch {
-            print(error)
-        }
     }
     
-    static func setImageCache(_ image: NSData, withKey key: String) {
+    static public func setImageCache(_ image: NSData, withKey key: String) {
         Cache.imageCache.setObject(image, forKey: NSString(string: key))
         
         Cache.defaults.set(image, forKey: key)
     }
     
-    static func getMovieCache(withKey key:  String) -> Movie? {
+    static public func getMovieCache(withKey key:  String) -> Movie? {
         var movie: Movie?
         if let movieCache = Cache.movieCache.object(forKey: key as NSString) {
             movie = movieCache
@@ -71,29 +63,16 @@ struct Cache {
         return movie
     }
     
-    static func getListCache(withKey key:  String) -> Wrapper? {
+    static public func getListCache(withKey key:  String) -> Wrapper? {
         var wrapper: Wrapper?
         if let wrapperCache = Cache.listCache.object(forKey: key as NSString) {
             wrapper = wrapperCache
-        } else {
-            do {
-                if let data =  Cache.defaults.data(forKey: key) {
-                  wrapper = try JSONDecoder().decode(Wrapper.self, from:data)
-               }
-            }
-            catch {
-                print(error)
-            }
-            
-            if let w = wrapper {
-                Cache.listCache.setObject(w, forKey: NSString(string: key))
-            }
         }
         
         return wrapper
     }
     
-    static func getImageCache(withKey key:  String) -> NSData? {
+    static public func getImageCache(withKey key:  String) -> NSData? {
         var image: NSData?
         if let imageCache = Cache.imageCache.object(forKey: key as NSString) {
             image = imageCache

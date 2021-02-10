@@ -26,10 +26,13 @@ class ServiceMock : ServiceProtocol {
            ]
         ]
     
-    
+    var getCall: ((String) -> Void)? = nil
     
     func getData(from url: String, parameters: [String:String]?, callBack: @escaping CallBack) throws {
         do {
+            if let call = self.getCall {
+                call(url)
+            }
             var jsonData: Data
             if url.contains("get-most-popular-movies") {
                 jsonData = try JSONSerialization.data(withJSONObject: self.listResponse, options: [])

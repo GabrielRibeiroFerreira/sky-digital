@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Service : ServiceProtocol {
+public class Service : ServiceProtocol {
     func getData(from url: String, parameters: [String : String]?, callBack: @escaping CallBack) throws {
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
@@ -16,13 +16,17 @@ class Service : ServiceProtocol {
         request.allHTTPHeaderFields = parameters
 
         let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
             if (error != nil) {
                 callBack(nil, false, error.debugDescription)
             } else {
                 let httpResponse = response as? HTTPURLResponse
                 print(httpResponse?.statusCode)
-                callBack(data, true, "")
+                if httpResponse?.statusCode == 200 {
+                    callBack(data, true, "")
+                } else {
+                    callBack(nil, false, httpResponse.debugDescription)
+                }
             }
         })
 

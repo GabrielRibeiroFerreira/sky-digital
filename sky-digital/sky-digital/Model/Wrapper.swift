@@ -7,15 +7,6 @@
 
 import Foundation
 
-class Wrapper: Codable {
+public class Wrapper: Codable {
     var results: [String]?
-//    var page: Int?
-//    var total_results: Int?
-//    var dates: Dates?
-//    var total_pages: Int?
-//
-//    struct Dates: Codable {
-//        var maximum: String?
-//        var minimum: String?
-//    }
 }
