@@ -25,12 +25,12 @@ public class DetailsController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.setView()
     }
     
     public func setPresenter(presenter: DetailsPresenter) {
         self.presenter = presenter
         
-        self.setView()
     }
     
     func setView() {

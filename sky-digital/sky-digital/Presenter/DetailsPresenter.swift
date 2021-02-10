@@ -20,10 +20,10 @@ public class DetailsPresenter {
     }
     
     public func getDate() -> String {
-        return movie?.title?.title ?? ""
+        return movie?.releaseDate ?? ""
     }
     
     public func getDescription() -> String {
-        return movie?.title?.title ?? ""
+        return movie?.plotSummary?.text ?? ""
     }
 }
